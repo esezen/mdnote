@@ -1,18 +1,59 @@
 <template>
   <div class="home">
-    <img src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+
+    <el-container>
+      <el-aside>
+        <navbar/>
+
+      </el-aside>
+      <el-main>
+        <vue-markdown>i am a ~~tast~~ **test**.</vue-markdown>
+        <el-row :gutter="20">
+          <el-col :span="12">
+            <el-input resize="none" type="textarea" placeholder="Please input" v-model="markdown">
+            </el-input>
+          </el-col>
+          <el-col :span="12">
+            <el-input resize="none" type="textarea" placeholder="Please input" v-model="converted">
+            </el-input>
+          </el-col>
+        </el-row>
+
+      </el-main>
+    </el-container>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import NavBar from '@/components/NavBar'
+import VueMarkdown from 'vue-markdown'
 export default {
   name: 'home',
   components: {
-    HelloWorld
+    navbar: NavBar,
+    VueMarkdown
+  },
+  data() {
+    return {
+      markdown: '',
+      converted: ''
+    }
   }
 }
 </script>
+<style lang="scss">
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
+.home {
+  font-family: 'Quicksand', sans-serif;
+  .el-row {
+    .el-col {
+      .el-textarea {
+        textarea {
+          min-height: 95vh !important;
+        }
+      }
+    }
+  }
+}
+</style>
+
